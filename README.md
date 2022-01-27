@@ -6,26 +6,27 @@ DOCKER
 Docker Hub : repo for widely used docker images
 
 Docker Commands
-run : runs a container of an image if exists locally else pulls the image from hub.
-	         e.g docker run nginx
-ps : lists all the running containers with basic info like id, time etc
-ps -a : lists all running and not running containers
-stop “name or id of container” : stops a running container
-rm “name or id” : removes a container from space
-images : lists the downloaded images currently on the system with their sizes
-rmi “image name” : removes an image (ensure that this image is not running in a container
-pull “image” : downloads an image from hub
+1. run : runs a container of an image if exists locally else pulls the image from hub.
+         e.g docker run nginx
+2. ps : lists all the running containers with basic info like id, time etc
+3. ps -a : lists all running and not running containers
+4. stop “name or id of container” : stops a running container
+5. rm “name or id” : removes a container from space
+6. images : lists the downloaded images currently on the system with their sizes
+7. rmi “image name” : removes an image (ensure that this image is not running in a container
+8. pull “image” : downloads an image from hub
 Note : a docker container stops as soon as it completes the intended task .
-exec “image” commands : executes a set of commands in a running container
-run -d “image” : this runs the container in background mode
-attach “container id” : this again attaches you to background container 
-run -it centos bash : runs the centos container, logs you in using -it flag and opens bash
--i : interactive mode
--t : terminal mode
--p External_port : internal_port : -p flag specifies which external port the internal port will be mapped to. 
--v External_directory : internal_directory : maps docker volume to external location
-inspect “name or ID” : returns data about a container in a JSON format
-logs “id or name” : to see the output of container in background
+9. exec “image” commands : executes a set of commands in a running container
+10. run -d “image” : this runs the container in background mode
+11. attach “container id” : this again attaches you to background container 
+12. run -it centos bash : runs the centos container, logs you in using -it flag and opens bash
+13. -i : interactive mode
+14. -t : terminal mode
+15. -p External_port : internal_port : -p flag specifies which external port the internal port will be mapped to. 
+16. -v External_directory : internal_directory : maps docker volume to external location
+17. inspect “name or ID” : returns data about a container in a JSON format
+18. logs “id or name” : to see the output of container in background
+
 
 Docker Image 
 We can build docker image using Dockerfile
