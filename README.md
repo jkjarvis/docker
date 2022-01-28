@@ -51,3 +51,19 @@ To push your local image to docker hub
 login  - `sudo docker login` : Enter username and password
 Build the image by running ‘your_username/image_name’ as name of your image
 Run : `docker push image_name`
+
+Docker Compose
+Create a YAML for defining all the config.
+There are 3 versions 1, 2 and 3 .  
+
+We will take example for version 2
+
+1. version : only in version 2 and 3, specifies the docker-compose version.
+2. services : this contains all the main config about images . It is an dictionary of different services like postgre, redis etc.
+   * image : name of the image that exists on local or docker hub 
+   * build : if an image is to be built, we define build instead of image and this contains the location of the dockerfile for the config of the image
+   * ports : a list of port mappings for the given image. External_port : Internal_port
+   * links (NOT USED IN VERSION 2 and 3): a list of dependencies to other images
+   * depends_on (only with version 2 or higher) : list of dependent images.
+   * network (version 2 or higher) : a list of networks for the image
+3. networks (version 2 or higher) : a list of networks with (optional) config
