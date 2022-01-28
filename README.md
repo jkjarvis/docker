@@ -28,7 +28,7 @@ Note : a docker container stops as soon as it completes the intended task .
 18. logs “id or name” : to see the output of container in background
 
 
-Docker Image 
+# Docker Image 
 We can build docker image using Dockerfile
 Dockerfile is in an instruction argument format with instructions on left and arguments on right e.g RUN (instruction)  Ubuntu (argument)
 Docker caches each layer and when rebuilt,  it only rebuild from the updated layer
@@ -52,7 +52,7 @@ login  - `sudo docker login` : Enter username and password
 Build the image by running ‘your_username/image_name’ as name of your image
 Run : `docker push image_name`
 
-Docker Compose
+# Docker Compose
 Create a YAML for defining all the config.
 There are 3 versions 1, 2 and 3 .  
 
