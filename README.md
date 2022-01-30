@@ -66,4 +66,56 @@ We will take example for version 2
    * links (NOT USED IN VERSION 2 and 3): a list of dependencies to other images
    * depends_on (only with version 2 or higher) : list of dependent images.
    * network (version 2 or higher) : a list of networks for the image
-3. networks (version 2 or higher) : a list of networks with (optional) config
+3. networks (version 2 or higher) : a list of networks with (optional) config.
+
+# Docker Architecture 
+* –cpus : this command restricts cpu usage for a container , e.g. –cpus=0.5 means restricts till 50% of cpu usage
+* –memory : this restricts memory for an isolated containers. E.g –memory=100m means restricts till 100 mbs of memory.
+* Namespaces = Since each container is isolated, it can have any PID e.g 1. but we can have a number of isolated containers so giving each container to act as root (start PIDs from 1) will be difficult. Therefore docker uses Namespaces for isolated containers to distinguish them from other containers, inside a container, it act as root .
+* docker exec “container_id” ps -eaf : list all the processes inside a container
+
+# Docker File System
+When we download  docker on our system, it creates a directory in `/var/lib/docker`.
+
+```
+/var/lib/docker
+aufs
+volumes
+image
+containers
+```
+
+# Docker Layered Architecture
+When we build from a Dockerfile, each line is stored as a different layer
+E.g FROM Ubuntu, it stores the ubuntu image in one layer, apt-get updates in another layer etc. So each layer only contains the changes from the previous layer. Whenever we modify any layer, docker uses the cache of previous layers. 
+Even if we build a separate image that has common layers like same Ubuntu image or packages, docker still uses the cache of the same layers and only downloads the newer content.
+
+# Docker Image layer And Container layer
+* Docker’s image layer is a READ only layer, once an image is built, no changes can be done to it
+* Docker’s container layer is one which contains all container related things and is a READ WRITE layer. 
+If we want to change anything from an image, docker first copies the image to container layer and then runs our changes .
+Docker won’t store anything to image layer until we build the image i.e. if a container is removed, the copied image will also be removed
+
+# Docker Volumes
+* If we want to persist the data for a container i.e. keep the data even if the container is removed, we can map its storage to an outside folder
+* Volume mounting : in this , when we create a volume, it is created inside the docker’s volume folder
+* `docker run -v VOLUME_NAME : CONTAINER’S DIRECTORY  IMAGENAME
+The above command  creates a volume folder inside `var/lib/docker/volume` and stores the container’s data
+Bind mounting : in this , a container’s data is stored in a system’s location of user’s choice and not in `var/lib/docker/volume` 
+* `docker run -v LOCATION : CONTAINER’S DIRECTORY IMAGENAME
+* `docker run –mount type=bind, source=container’s location , target=on machine directory IMAGENAME `
+
+
+# Docker Networking
+There are 3 networks in docker : bridge, none, host.
+1. bridge networks : this is the default network to which a container is associated with if nothing is specified. 
+* All containers initially are connected internally in the bridge network
+* Mostly it starts with 172.17
+* To make these container available to outside world, we map them externally
+* To interact with other containers, we can specify the container name. E.g to connect to mysql , instead of specifying address , we can type the container;s name. E.g mysql.connector(mysql) where mysql is container’s name.
+
+2. host network : if host is specified, the container will be in the host network but this will make the host’s port busy where the container is situated. E.g if we specify 5000 as port and network as host, the machine’s 5000 will run the container and we cannot run anything on port 5000.
+* to run this `docker run Ubuntu –network=host
+3. none network : in this the container runs isolated and cannot interact with other containers or outside world
+* to run `docker run Ubuntu –network=none` 
+
