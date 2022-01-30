@@ -119,3 +119,18 @@ There are 3 networks in docker : bridge, none, host.
 3. none network : in this the container runs isolated and cannot interact with other containers or outside world
 * to run `docker run Ubuntu –network=none` 
 
+# Orchestration
+A set of tools to automate host deployments depending on load and balance it and even create newer hosts when one fails.
+
+
+1. Docker Swarm : this is provided by docker but doesn’t have many advanced features. In this , one host is made the ‘manager’ and other are worker nodes
+* `docker swarm init` : this initializes the host as manager and generates a token.
+* `docker swarm join –token <token>` : this is run on all the hosts to join with the manager.
+* `docker run –replicas=3 mysql` : this command is run on the manager and it creates 3 replicas on 3 different workers for the mysql
+* We can use the docker flags like -p for port, -v for volume etc with all the commands
+
+2. Kubernetes : This is the most popular orchestration tool and even use docker or some other alternatives to deploy containers.
+* In kubernetes, you have nodes, there should be multiple nodes as if one fails, other works.
+* One node is a master node and other are worker nodes.
+* It provides functions like autoscaling when load is higher, rollback softwares etc.
+
