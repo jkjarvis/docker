@@ -99,10 +99,10 @@ Docker won’t store anything to image layer until we build the image i.e. if a 
 # Docker Volumes
 * If we want to persist the data for a container i.e. keep the data even if the container is removed, we can map its storage to an outside folder
 * Volume mounting : in this , when we create a volume, it is created inside the docker’s volume folder
-* `docker run -v VOLUME_NAME : CONTAINER’S DIRECTORY  IMAGENAME
+* `docker run -v VOLUME_NAME : CONTAINER’S DIRECTORY  IMAGENAME`
 The above command  creates a volume folder inside `var/lib/docker/volume` and stores the container’s data
 Bind mounting : in this , a container’s data is stored in a system’s location of user’s choice and not in `var/lib/docker/volume` 
-* `docker run -v LOCATION : CONTAINER’S DIRECTORY IMAGENAME
+* `docker run -v LOCATION : CONTAINER’S DIRECTORY IMAGENAME`
 * `docker run –mount type=bind, source=container’s location , target=on machine directory IMAGENAME `
 
 
@@ -115,7 +115,7 @@ There are 3 networks in docker : bridge, none, host.
 * To interact with other containers, we can specify the container name. E.g to connect to mysql , instead of specifying address , we can type the container;s name. E.g mysql.connector(mysql) where mysql is container’s name.
 
 2. host network : if host is specified, the container will be in the host network but this will make the host’s port busy where the container is situated. E.g if we specify 5000 as port and network as host, the machine’s 5000 will run the container and we cannot run anything on port 5000.
-* to run this `docker run Ubuntu –network=host
+* to run this `docker run Ubuntu –network=host`
 3. none network : in this the container runs isolated and cannot interact with other containers or outside world
 * to run `docker run Ubuntu –network=none` 
 
