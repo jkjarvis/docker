@@ -35,7 +35,8 @@ Docker caches each layer and when rebuilt,  it only rebuild from the updated lay
 
 E.g for Dockerfile
 
-``` - FROM ubuntu
+```
+- FROM ubuntu
 - RUN apt-get update && apt-get -y install python3 python3-pip
 - RUN pip install flask flask-mysql
 - COPY app.py /opt/source-code/app.py
