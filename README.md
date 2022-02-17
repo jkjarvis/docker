@@ -6,6 +6,7 @@ DOCKER
 Docker Hub : repo for widely used docker images
 
 Docker Commands
+
 Note : All the listed commands below use the prefix `docker` .
 1. run : runs a container of an image if exists locally else pulls the image from hub.
          e.g docker run nginx
