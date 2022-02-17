@@ -6,6 +6,7 @@ DOCKER
 Docker Hub : repo for widely used docker images
 
 Docker Commands
+Note : All the listed commands below use the prefix `docker` .
 1. run : runs a container of an image if exists locally else pulls the image from hub.
          e.g docker run nginx
 2. ps : lists all the running containers with basic info like id, time etc
@@ -26,6 +27,7 @@ Note : a docker container stops as soon as it completes the intended task .
 16. -v External_directory : internal_directory : maps docker volume to external location
 17. inspect “name or ID” : returns data about a container in a JSON format
 18. logs “id or name” : to see the output of container in background
+19. system prune : remove all unused containers, networks, images (both dangling and unreferenced), and optionally, volumes (use --volumes).
 
 
 # Docker Image 
